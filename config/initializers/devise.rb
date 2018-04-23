@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '9b0d6b066f16260d85041abd7550a04bf782f3697502f0076cd1834d9146499bf24481398ddd378f3eb42860005edb096501768443aba1d9764edf024c32990f'
+  config.secret_key = '9b0d6b066f16260d85041abd7550a04bf782f3697502f0076cd1834d9146499bf24481398ddd378f3eb42860005edb096501768443aba1d9764edf024c32990f'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -254,11 +254,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  if Rails.application.secrets.facebook_app_id.present? && Rails.application.secrets.facebook_app_secret.present? then (config.omniauth :facebook, Rails.application.secrets.facebook_app_id, Rails.application.secrets.facebook_app_secret, scope: 'email,user_posts') end 
+  if Rails.application.secrets.facebook_app_id.present? && Rails.application.secrets.facebook_app_secret.present? then (config.omniauth :facebook, Rails.application.secrets.facebook_app_id, Rails.application.secrets.facebook_app_secret, scope: 'email,user_posts') end
 
-    if Rails.application.secrets.twitter_app_id.present? && Rails.application.secrets.twitter_app_secret.present? then (config.omniauth :twitter, Rails.application.secrets.twitter_app_id, Rails.application.secrets.twitter_app_secret) end 
+  if Rails.application.secrets.twitter_app_id.present? && Rails.application.secrets.twitter_app_secret.present? then (config.omniauth :twitter, Rails.application.secrets.twitter_app_id, Rails.application.secrets.twitter_app_secret) end
 
-    if Rails.application.secrets.github_app_id.present? && Rails.application.secrets.github_app_secret.present? then (config.omniauth :github, Rails.application.secrets.github_app_id, Rails.application.secrets.github_app_secret) end
+  if Rails.application.secrets.github_app_id.present? && Rails.application.secrets.github_app_secret.present? then (config.omniauth :github, Rails.application.secrets.github_app_id, Rails.application.secrets.github_app_secret) end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

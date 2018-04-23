@@ -7,7 +7,11 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
-    <%= link_to "Currently #{Current.account.name}", root_path, class: "navbar-brand" %>
+    <% if Current.account.present? %>
+      <%= link_to Current.account.name, root_path, class: "navbar-brand" %>
+    <% else %>
+      <%= link_to "MyApp", root_path, class: "navbar-brand" %>
+    <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
