@@ -5,8 +5,8 @@ class AccountMiddleware
 
   # http://example.com/12345/projects
   def call(env)
-    request = ActionDispatch::Request.new env
-    _, account_id, request_path = request.path.split('/', 3)
+    original_request_path = [env["SCRIPT_NAME"], env["PATH_INFO"]].join
+    _, account_id, request_path = original_request_path.split('/', 3)
 
     if account_id =~ /\d+/
       if account = Account.find_by(id: account_id)
@@ -15,10 +15,12 @@ class AccountMiddleware
         return [302, { "Location" => "/" }, []]
       end
 
-      request.script_name  = "/#{account_id}"
-      request.path_info    = "/#{request_path}"
+      env["SCRIPT_NAME"]  = "/#{account_id}"
+      env["PATH_INFO"]    = "/#{request_path}"
+      env["REQUEST_PATH"] = "/#{request_path}"
+      env["REQUEST_URI"]  = "/#{request_path}"
     end
 
-    @app.call(request.env)
+    @app.call(env)
   end
 end
